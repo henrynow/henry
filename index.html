@@ -877,6 +877,25 @@
     .quickwrap{display:none}
     .hero{padding-bottom:18px}
   }
+  /* ── 모바일 견고성 ─────────────────────────────────────────
+     폰의 글자 크기를 키운 경우(안드로이드 '글꼴 크기'·'큰 글씨')에도
+     끊을 수 없는 긴 문자열이 폭을 밀어내 페이지가 옆으로 삐져나가
+     오른쪽이 잘리는 일이 없도록 모바일에서만 최소폭을 풀고 줄바꿈을 허용. */
+  @media (max-width:1039px){
+    .fbiz .fval{min-width:0; overflow-wrap:anywhere; word-break:keep-all}
+    .paper, .paper *{min-width:0}
+    .paper .pv, .paper h3, .paper .plabel, .paper .pdate{overflow-wrap:anywhere}
+    .poffice{flex-wrap:wrap; max-width:100%}
+    .docsec .wrap, .doc-copy, .doc-copy *{min-width:0}
+    .hdr .in, .brand{min-width:0}
+    .btn-hdr{white-space:nowrap; flex:0 0 auto}
+  }
+  @media (max-width:345px){
+    .hdr .in{gap:8px; padding:0 16px}
+    .brand .sub{display:none}
+    .btn-hdr{padding:0 12px; font-size:12.5px; gap:4px}
+  }
+
   @media (prefers-reduced-motion:reduce){
     *{scroll-behavior:auto !important; animation:none !important; transition:none !important}
   }
