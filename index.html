@@ -608,6 +608,136 @@
   .sheet-cta{display:block; width:100%; border:0; cursor:pointer; font-family:inherit; margin-top:14px; background:var(--blue); color:#fff; font-size:15px; font-weight:700; letter-spacing:-.02em; min-height:52px; padding:12px; border-radius:12px}
   .sheet .close{width:100%; border:0; background:transparent; color:var(--muted); font-size:13px; font-weight:600; padding:11px; cursor:pointer; font-family:inherit}
 
+
+  /* ── 차종별 폐차 vs 수출 비교 시세 ─────────────── */
+  .spec{background:#fff}
+  .spec-card{
+    background:#fff; border:1px solid #E9EEF6; border-radius:24px; padding:6px 24px 2px;
+    box-shadow:0 14px 38px rgba(15,23,42,.06);
+  }
+  .spectable{width:100%; border-collapse:collapse; font-variant-numeric:tabular-nums}
+  .spectable caption{position:absolute; width:1px; height:1px; margin:-1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap}
+  .spectable th{
+    font-size:11.5px; font-weight:600; color:var(--muted); letter-spacing:-.01em; white-space:nowrap;
+    text-align:right; padding:17px 0 12px; border-bottom:1px solid var(--line);
+  }
+  .spectable th:first-child{text-align:left}
+  .spectable td{
+    padding:15px 0; border-bottom:1px solid var(--line-2); text-align:right; vertical-align:middle;
+    font-size:15px; font-weight:700; color:#6B7684; letter-spacing:-.03em;
+  }
+  .spectable tbody tr:last-child td{border-bottom:0}
+  .spectable td:first-child{text-align:left; padding-right:12px}
+  .spectable .scname{display:block; font-size:15.5px; font-weight:800; color:var(--ink); letter-spacing:-.035em; line-height:1.35}
+  .spectable .scmeta{display:block; margin-top:2px; font-size:11.5px; font-weight:500; color:var(--muted); letter-spacing:-.01em; line-height:1.4}
+  .spectable .scnew{color:var(--blue); font-size:16.5px; font-weight:800}
+  .spectable .scdiff{
+    display:inline-block; padding:4px 9px; border-radius:8px; background:#EAF1FF; color:var(--blue-deep);
+    font-size:13px; font-weight:800; letter-spacing:-.02em; line-height:1.35; white-space:nowrap;
+  }
+  .specnote{margin-top:12px; font-size:11px; font-weight:500; color:var(--faint); letter-spacing:-.01em; line-height:1.6}
+  .spec-pact{
+    margin-top:14px; display:flex; align-items:center; gap:14px;
+    background:linear-gradient(180deg,#F5F8FF 0%,#EDF4FF 100%); border:1px solid #DCE8FF; border-radius:20px;
+    padding:18px 20px;
+  }
+  .spec-pact .pci{
+    flex:0 0 38px; width:38px; height:38px; border-radius:12px; background:#fff; color:var(--blue);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 4px 12px rgba(0,102,255,.14);
+  }
+  .spec-pact .pci svg{width:19px; height:19px}
+  .spec-pact .pctx{flex:1; min-width:0}
+  .spec-pact .pctx b{display:block; font-size:14.5px; font-weight:800; color:var(--blue-deep); letter-spacing:-.035em; line-height:1.45; text-wrap:balance}
+  .spec-pact .pctx p{margin-top:3px; font-size:12.5px; font-weight:500; color:#41536E; letter-spacing:-.03em; line-height:1.55}
+  .spec-pact .btn{
+    flex:0 0 auto; min-height:44px; padding:0 18px; font-size:13.5px;
+    background:#fff; color:var(--blue-deep); border:1px solid #CFE0FF; box-shadow:0 6px 16px rgba(0,102,255,.10);
+  }
+  .spec-pact .btn:hover{background:#F4F8FF}
+
+  /* ── 호구 안 당하는 가이드 3종 ─────────────────── */
+  .guide{background:#F5F8FF}
+  .gdlist{display:grid; gap:10px}
+  .gditem{
+    background:#fff; border:1px solid #E9EEF6; border-radius:18px; overflow:hidden;
+    transition:border-color .16s ease, box-shadow .16s ease;
+  }
+  .gditem.open{border-color:#CFE0FF; box-shadow:0 12px 30px rgba(15,23,42,.06)}
+  .gdbtn{
+    display:flex; align-items:center; gap:14px; width:100%; padding:17px 18px;
+    background:transparent; border:0; cursor:pointer; font-family:inherit; text-align:left;
+  }
+  .gdbtn:hover{background:#FAFCFF}
+  .gdbtn:focus-visible{outline:2px solid var(--blue); outline-offset:-3px; border-radius:18px}
+  .gdnum{
+    flex:0 0 30px; width:30px; height:30px; border-radius:50%; background:#E7F0FF; color:var(--blue-deep);
+    font-size:13px; font-weight:800; display:flex; align-items:center; justify-content:center;
+    font-variant-numeric:tabular-nums; transition:background .16s ease, color .16s ease;
+  }
+  .gditem.open .gdnum{background:var(--blue); color:#fff}
+  .gdtx{flex:1; min-width:0}
+  .gdtx b{display:block; font-size:15.5px; font-weight:700; color:var(--ink); letter-spacing:-.035em; line-height:1.4}
+  .gdtx > span{display:block; margin-top:2px; font-size:12.5px; font-weight:500; color:var(--muted); letter-spacing:-.02em; line-height:1.45}
+  .gdchev{flex:0 0 20px; width:20px; height:20px; color:var(--faint); transition:transform .2s ease, color .2s ease}
+  .gditem.open .gdchev{transform:rotate(180deg); color:var(--blue)}
+  .gdpanel{padding:0 18px 18px 62px}
+  .gdpanel .gdlead{font-size:13.5px; line-height:1.65; color:var(--sub); font-weight:500; letter-spacing:-.03em}
+  .gdlist-inner{margin-top:12px; display:grid; gap:8px}
+  .gdlist-inner li{background:#F7F9FC; border-radius:12px; padding:11px 13px}
+  .gdlist-inner b{display:block; font-size:13px; font-weight:700; color:var(--ink); letter-spacing:-.03em}
+  .gdlist-inner span{display:block; margin-top:2px; font-size:12.5px; font-weight:500; color:var(--sub); line-height:1.55; letter-spacing:-.02em}
+  .gdfoot{
+    margin-top:12px; font-size:12.5px; line-height:1.6; color:#1B4FA8; font-weight:600; letter-spacing:-.03em;
+    background:#F2F7FF; border-radius:12px; padding:11px 13px;
+  }
+  .gdfoot b{font-weight:800; color:var(--blue-deep)}
+  .gdblog{margin-top:14px; display:flex; justify-content:center}
+  .gdblog .btn{min-height:48px; font-size:14px}
+
+  /* ── 새 섹션 반응형 ───────────────────────────── */
+  @media (max-width:1039px){
+    .spec-card{padding:4px 16px 2px; border-radius:20px}
+    .spectable thead{display:none}
+    .spectable, .spectable tbody, .spectable tr, .spectable td{display:block; width:100%}
+    .spectable tr{
+      display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:0 6px;
+      padding:14px 2px 14px; border-bottom:1px solid var(--line-2);
+    }
+    .spectable tbody tr:last-child{border-bottom:0}
+    .spectable td{padding:0; border-bottom:0; text-align:left; font-size:15px}
+    .spectable td:first-child{
+      grid-column:1 / -1; display:flex; align-items:baseline; justify-content:space-between; gap:8px;
+      padding:0 0 9px; margin-bottom:10px; border-bottom:1px dashed #EEF2F7;
+    }
+    .spectable .scname{font-size:15px}
+    .spectable .scmeta{margin-top:0; flex:0 0 auto; font-size:11px}
+    .spectable td[data-l]::before{
+      content:attr(data-l); display:block; font-size:10.5px; font-weight:600; color:var(--faint);
+      letter-spacing:-.01em; margin-bottom:3px; white-space:nowrap;
+    }
+    .spectable .scnew{font-size:15.5px}
+    .spectable .scdiff{font-size:12px; padding:3px 7px}
+    .spec-pact{flex-wrap:wrap; gap:12px; padding:16px; border-radius:16px}
+    .spec-pact .pci{flex:0 0 34px; width:34px; height:34px; border-radius:11px}
+    .spec-pact .pctx{flex:1 1 0}
+    .spec-pact .pctx b{font-size:13.5px}
+    .spec-pact .btn{flex:1 1 100%; min-height:46px; font-size:14px}
+    .gdbtn{padding:15px 14px; gap:11px}
+    .gdtx b{font-size:14.5px}
+    .gdtx > span{font-size:12px}
+    .gdpanel{padding:0 14px 16px}
+    .gdlist-inner li{padding:10px 12px}
+  }
+  @media (max-width:420px){
+    .spectable .scname{font-size:14.5px}
+    .spectable .scmeta{font-size:10.5px}
+    .spectable td{font-size:14px}
+    .spectable .scnew{font-size:14.5px}
+    .spectable .scdiff{font-size:11.5px; padding:3px 6px}
+    .gdtx b{font-size:14px}
+    .gdtx > span{font-size:11.5px}
+  }
+
   /* ── 데스크톱 ─────────────────────────── */
   @media (min-width:1040px){
     .dock{display:none}
@@ -776,8 +906,9 @@
     <nav class="gnb" aria-label="주요 메뉴">
       <a href="#quote">무료 조회</a>
       <a href="#safety">안전 체계</a>
-      <a href="#why">혜택</a>
       <a href="#reviews">정산 사례</a>
+      <a href="#price">시세 비교</a>
+      <a href="#guide">가이드</a>
       <a href="#doc">말소증</a>
     </nav>
     <div class="right">
@@ -1330,6 +1461,144 @@
   </div>
 </section>
 
+<!-- ═══ 차종별 폐차 vs 수출 비교 시세 ═════════════ -->
+<section class="sec spec" id="price">
+  <div class="wrap">
+    <div class="sechead center">
+      <span class="kick">차종별 비교 시세</span>
+      <h2>폐차 견적과 수출가,<br><span>나란히</span> 놓았습니다</h2>
+      <p>같은 차도 어디에 넘기느냐에 따라 금액이 달라집니다. 2008~2015년식 주력 5종을 같은 기준으로 비교했습니다.</p>
+    </div>
+
+    <div class="spec-card">
+      <table class="spectable">
+        <caption>2008~2015년식 주력 5종의 국내 폐차·내수 견적과 바이어픽 수출 예상가 비교 예시</caption>
+        <thead>
+          <tr>
+            <th scope="col">차종 · 연식</th>
+            <th scope="col">국내 폐차·내수</th>
+            <th scope="col">바이어픽 수출</th>
+            <th scope="col">차액</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="scname">아반떼 MD</span><span class="scmeta">2011년식 · 21만km</span></td>
+            <td data-l="폐차·내수">70만 원</td>
+            <td data-l="수출 예상"><span class="scnew">180만 원</span></td>
+            <td data-l="차액"><span class="scdiff">+110만</span></td>
+          </tr>
+          <tr>
+            <td><span class="scname">포터2</span><span class="scmeta">2013년식 · 24만km</span></td>
+            <td data-l="폐차·내수">150만 원</td>
+            <td data-l="수출 예상"><span class="scnew">420만 원</span></td>
+            <td data-l="차액"><span class="scdiff">+270만</span></td>
+          </tr>
+          <tr>
+            <td><span class="scname">쏘렌토R</span><span class="scmeta">2010년식 · 26만km</span></td>
+            <td data-l="폐차·내수">220만 원</td>
+            <td data-l="수출 예상"><span class="scnew">380만 원</span></td>
+            <td data-l="차액"><span class="scdiff">+160만</span></td>
+          </tr>
+          <tr>
+            <td><span class="scname">그랜드 스타렉스</span><span class="scmeta">2012년식 · 28만km</span></td>
+            <td data-l="폐차·내수">160만 원</td>
+            <td data-l="수출 예상"><span class="scnew">350만 원</span></td>
+            <td data-l="차액"><span class="scdiff">+190만</span></td>
+          </tr>
+          <tr>
+            <td><span class="scname">K5</span><span class="scmeta">2011년식 · 19만km</span></td>
+            <td data-l="폐차·내수">90만 원</td>
+            <td data-l="수출 예상"><span class="scnew">210만 원</span></td>
+            <td data-l="차액"><span class="scdiff">+120만</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <p class="specnote">※ 예시 기준이며 차량 상태·옵션·해외 입찰 시세에 따라 달라질 수 있습니다.</p>
+    </div>
+
+    <div class="spec-pact">
+      <span class="pci" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2l7 2.8v5.4c0 4.3-2.9 7.6-7 9.4-4.1-1.8-7-5.1-7-9.4V6z"/><path d="M8.8 12.1l2.2 2.2 4.2-4.6"/></svg>
+      </span>
+      <div class="pctx">
+        <b>폐차장·딜러 견적을 먼저 받아보시고 마지막에 비교해 보세요.</b>
+        <p>고지된 상태가 같으면 같은 조건에서 최고가로 맞춥니다.</p>
+      </div>
+      <button class="btn" type="button" onclick="scrollToQuote()">내 차 조회</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ 호구 안 당하는 가이드 3종 ════════════════ -->
+<section class="sec guide" id="guide">
+  <div class="wrap">
+    <div class="sechead">
+      <span class="kick">호구 안 당하는 가이드</span>
+      <h2>차 팔 때 깎이는 세 가지,<br><span>미리</span> 알고 계세요</h2>
+      <p>현장에서 자주 나오는 이야기와, 바이어픽이 그 자리를 어떻게 막는지 정리했습니다.</p>
+    </div>
+
+    <div class="gdlist">
+      <article class="gditem">
+        <button class="gdbtn" type="button" id="gdbtn1" aria-expanded="false" aria-controls="gdpanel1">
+          <span class="gdnum" aria-hidden="true">1</span>
+          <span class="gdtx"><b>현장 기사 와서 30만 원 깎는 수법 3가지</b><span>바이어픽이 고지 일치 감가 0원인 이유</span></span>
+          <svg class="gdchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+        </button>
+        <div class="gdpanel" id="gdpanel1" role="region" aria-labelledby="gdbtn1" hidden>
+          <p class="gdlead">차를 넘기는 순간, 같은 차라도 확인하는 사람에 따라 30만~50만 원이 오르내립니다. 현장에서 자주 나오는 감가 사유는 이 세 가지입니다.</p>
+          <ul class="gdlist-inner">
+            <li><b>경고등·소음 지적</b><span>시동 직후 잠깐 켜졌던 경고등이나 냉간 소음을 근거로 금액을 내립니다.</span></li>
+            <li><b>하부 녹·누유 지적</b><span>사진에 없던 하부 상태를 새로 꺼내며 기준을 낮춥니다.</span></li>
+            <li><b>당일 시세·현금 사정</b><span>"오늘 시세가 빠졌다"며 마지막에 금액을 다시 부릅니다.</span></li>
+          </ul>
+          <p class="gdfoot">바이어픽이 현장에서 보는 항목은 <b>시동·주행, 엔진·미션 경고등·충격, 사진과 다른 중대 파손·침수</b> 세 가지뿐입니다. 고지한 상태와 같으면 감가 0원, 금액은 접수 때 안내한 그대로입니다.</p>
+        </div>
+      </article>
+
+      <article class="gditem">
+        <button class="gdbtn" type="button" id="gdbtn2" aria-expanded="false" aria-controls="gdpanel2">
+          <span class="gdnum" aria-hidden="true">2</span>
+          <span class="gdtx"><b>내 차 폐차 vs 수출, 연식·주행거리 기준</b><span>주행 30만km여도 수출되는 이유</span></span>
+          <svg class="gdchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+        </button>
+        <div class="gdpanel" id="gdpanel2" role="region" aria-labelledby="gdbtn2" hidden>
+          <p class="gdlead">폐차는 차의 무게와 부품값으로, 수출은 해외에서 다시 달릴 차로 값을 매깁니다. 그래서 같은 차라도 숫자가 갈립니다.</p>
+          <ul class="gdlist-inner">
+            <li><b>폐차·내수가 유리한 차</b><span>2016년식 이후 · 무사고 · 10만km 이하. 국내 시세가 더 높은 구간입니다.</span></li>
+            <li><b>수출을 먼저 볼 차</b><span>2015년식 이하 · 주행 20만km 이상 · 경고등이나 판금·하자 이력이 있는 차.</span></li>
+            <li><b>주행거리 기준</b><span>수출은 주행 30만km도 매입 대상입니다. 국내에서 외면받는 주행거리가 해외에서는 판매 포인트가 됩니다.</span></li>
+          </ul>
+          <p class="gdfoot">내 차가 어느 쪽인지 애매하면 <b>차종·연식·주행거리</b> 세 가지만 알려주세요. 폐차와 수출 금액을 같이 계산해 드립니다.</p>
+        </div>
+      </article>
+
+      <article class="gditem">
+        <button class="gdbtn" type="button" id="gdbtn3" aria-expanded="false" aria-controls="gdpanel3">
+          <span class="gdnum" aria-hidden="true">3</span>
+          <span class="gdtx"><b>인계 당일 말소증 확인하는 법</b><span>대포차·과태료 걱정 끝내는 3단계</span></span>
+          <svg class="gdchev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9.5l6 6 6-6"/></svg>
+        </button>
+        <div class="gdpanel" id="gdpanel3" role="region" aria-labelledby="gdbtn3" hidden>
+          <p class="gdlead">차를 넘긴 뒤에도 내 이름으로 과태료가 날아오는 건, 말소가 끝나지 않았기 때문입니다. 인계 당일 세 단계만 확인하세요.</p>
+          <ul class="gdlist-inner">
+            <li><b>1단계 · 넘기기 전</b><span>자동차등록증과 신분증을 준비하고, 자동차등록원부(갑)에서 저당·압류가 없는지 확인합니다.</span></li>
+            <li><b>2단계 · 인계 당일</b><span>입금이 확인된 뒤 키를 넘깁니다. 같은 날 관청에 수출 말소를 신청합니다.</span></li>
+            <li><b>3단계 · 증명서 대조</b><span>말소등록사실증명서의 발급번호·말소일자·차대번호를 등록증과 맞춰봅니다. 이후 과태료·자동차세 고지가 없으면 정상입니다.</span></li>
+          </ul>
+          <p class="gdfoot">바이어픽은 인계 당일 관청에서 발급한 말소등록사실증명서 원본을 카톡으로 보내드립니다. 발급 수수료는 없습니다.</p>
+        </div>
+      </article>
+    </div>
+
+    <!-- 블로그는 우선 중지: CONFIG.BLOG_URL 이 비어 있으면 이 버튼은 화면에 나오지 않습니다 -->
+    <div class="gdblog" id="gdBlogRow" hidden>
+      <a class="btn btn-ghost" id="gdBlogLink" href="#" target="_blank" rel="noopener">블로그에서 더 보기</a>
+    </div>
+  </div>
+</section>
+
 <!-- ═══ 말소증 샘플 ══════════════════════════ -->
 <section class="sec docsec" id="doc">
   <div class="wrap docgrid">
@@ -1472,6 +1741,8 @@ const CONFIG = {
   // ── 상담 연결 (비워두면 폼 안내만) ─────────────────────────
   PHONE: "",                 // 예: "010-0000-0000"
   KAKAO_URL: "",             // 예: "https://pf.kakao.com/_xxxxx/chat"
+  // 블로그는 우선 중지 — 비워두면 블로그 관련 버튼이 화면에 나오지 않습니다
+  BLOG_URL: "",              // 예: "https://blog.naver.com/xxxxx" (값을 넣으면 가이드 하단 버튼이 나타남)
 
   // ── 사업자 정보 ────────────────────────────────────────────
   BRAND: "바이어픽",
@@ -1571,6 +1842,35 @@ $all('[data-exporter]').forEach(function(el){ el.textContent = CONFIG.EXPORTER |
     if (!docMap[k]) return;
     $all('[' + k + ']').forEach(function(el){ el.textContent = docMap[k]; });
   });
+})();
+
+/* ============================================================
+   호구 안 당하는 가이드 · 아코디언
+   ============================================================ */
+(function guideAccordion(){
+  $all('.gditem').forEach(function(item){
+    const btn = $('.gdbtn', item);
+    const panel = $('.gdpanel', item);
+    if (!btn || !panel) return;
+    btn.addEventListener('click', function(){
+      const open = btn.getAttribute('aria-expanded') === 'true';
+      btn.setAttribute('aria-expanded', open ? 'false' : 'true');
+      panel.hidden = open;
+      item.classList.toggle('open', !open);
+      if (!open) track('guide_open_' + btn.id.replace('gdbtn', ''));
+    });
+  });
+})();
+
+/* 블로그 링크 · CONFIG.BLOG_URL 이 비어 있으면 버튼 자체를 숨김 */
+(function blogLink(){
+  const row = document.getElementById('gdBlogRow');
+  const a = document.getElementById('gdBlogLink');
+  if (!row || !a) return;
+  const url = String(CONFIG.BLOG_URL || '').trim();
+  if (!url) { row.hidden = true; a.removeAttribute('href'); return; }
+  a.setAttribute('href', url);
+  row.hidden = false;
 })();
 
 /* 연식 셀렉트 (두 폼 공통) */
