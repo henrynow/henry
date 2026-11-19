@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<style>
+  body{font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:#F2F4F6;margin:0;padding:24px}
+  h2{font-size:14px;margin:0 0 14px;color:#191F28}
+  .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:26px}
+  .card{background:#fff;border-radius:16px;padding:16px}
+  .lab{font-size:11px;font-weight:700;color:#8B95A1;margin-bottom:10px}
+  .row{display:flex;align-items:center;gap:10px;margin-bottom:12px}
+  .mk{border-radius:11px;background:linear-gradient(140deg,#2F80FF,#0066FF 60%,#0052D9);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,102,255,.30);flex:0 0 auto}
+  .mk.lg{width:88px;height:88px;border-radius:26px}
+  .mk.md{width:34px;height:34px}
+  .mk.sm{width:24px;height:24px;border-radius:8px}
+  .mk.lg svg{width:52px;height:52px}
+  .mk.md svg{width:19px;height:19px}
+  .mk.sm svg{width:14px;height:14px}
+  .nm{font-size:20px;font-weight:800;letter-spacing:-.055em;color:#0B1220}
+  .small{display:flex;gap:12px;align-items:center;padding-top:10px;border-top:1px solid #EDEFF1}
+  /* mock header */
+  .hdr{background:#fff;border-bottom:1px solid #EDF0F5;border-radius:0;padding:0 20px}
+  .hdr .in{height:74px;display:flex;align-items:center;gap:24px}
+  .brand{display:flex;align-items:center;gap:9px}
+  .brand .mk{width:34px;height:34px;border-radius:11px}
+  .brand .mk svg{width:19px;height:19px}
+  .brand .nm{font-size:20px;font-weight:800;letter-spacing:-.055em;color:#0B1220}
+  .brand .sub{font-size:10.5px;font-weight:600;color:#8B95A1;padding-left:9px;margin-left:2px;border-left:1px solid #DDE3EC;line-height:1.3}
+  .gnb{display:flex;gap:22px;font-size:14px;font-weight:600;color:#333D4B}
+  .hbtn{margin-left:auto;background:#0066FF;color:#fff;font-size:13px;font-weight:700;padding:11px 16px;border-radius:10px}
+  .phone{max-width:430px;border-radius:14px;overflow:hidden;border:1px solid #E5E8EB}
+</style></head><body>
+<h2>Round 4 — final shape tuning (large / 34px / 24px / header context + mobile header)</h2>
+<div class="grid" id="grid"></div>
+<script>
+const S = (d,w=11,o=1) => `<path d="${d}" fill="none" stroke="#fff" stroke-opacity="${o}" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+const marks = {
+ "W1 · clean wave (2 humps)": S("M16 52C27 34 39 34 50 52C61 70 73 70 84 52"),
+ "W2 · wave + depth wave": S("M16 48C27 30 39 30 50 48C61 66 73 66 84 48")+S("M18 70C28 56 38 56 48 70C58 84 68 84 78 70",9,.42),
+ "W3 · wave, rising tail": S("M16 58C27 40 39 40 50 58C58 71 68 74 78 62"),
+ "W4 · wave, single crest": S("M16 56C30 34 44 34 58 56C64 65 72 68 82 62"),
+ "C1 · confluence refined": S("M18 32C36 32 36 50 54 50H82")+S("M18 68C36 68 36 50 54 50"),
+ "C2 · confluence + head": S("M18 32C34 32 34 50 50 50H62")+S("M18 68C34 68 34 50 50 50")+S("M62 38L74 50 62 62",10),
+ "W5 · wave, thicker crest": S("M18 54C28 38 40 38 50 54C60 70 72 70 82 54",12),
+ "C3 · two streams one line": S("M18 30C38 30 38 50 58 50H82")+S("M18 70C38 70 38 50 58 50",11)
+};
+const grid = document.getElementById('grid');
+for (const [name, svg] of Object.entries(marks)) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="lab">${name}</div>
+    <div class="row">
+      <div class="mk lg"><svg viewBox="0 0 100 100">${svg}</svg></div>
+      <div class="mk md"><svg viewBox="0 0 100 100">${svg}</svg></div>
+      <div class="mk sm"><svg viewBox="0 0 100 100">${svg}</svg></div>
+      <div><div class="nm" style="font-size:17px">원플로우</div></div>
+    </div>
+    <div class="hdr"><div class="in">
+      <div class="brand"><span class="mk"><svg viewBox="0 0 100 100">${svg}</svg></span><span class="nm">원플로우</span><span class="sub">자동차 직수출</span></div>
+      <span class="hbtn">무료 견적 조회</span>
+    </div></div>
+    <div class="phone" style="margin-top:12px"><div class="hdr"><div class="in" style="height:60px;gap:12px">
+      <div class="brand"><span class="mk" style="width:30px;height:30px;border-radius:10px"><svg viewBox="0 0 100 100">${svg}</svg></span><span class="nm" style="font-size:16px">원플로우</span></div>
+      <span class="hbtn" style="font-size:11.5px;padding:9px 12px">무료 견적 조회</span>
+    </div></div></div>`;
+  grid.appendChild(card);
+}
+</script>
+</body></html>
