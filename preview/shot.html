@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<title>shot</title>
+<style>
+  html,body{margin:0;background:#dfe3e9;font-family:-apple-system,sans-serif}
+  #stage{transform-origin:top left}
+  iframe{border:0;display:block;background:#fff}
+  .cap{position:fixed;right:8px;bottom:6px;font:11px/1.4 -apple-system,sans-serif;color:#5b6472;background:#fff;border-radius:6px;padding:4px 8px}
+</style></head><body>
+<div id="stage"></div>
+<div class="cap" id="cap"></div>
+<script>
+const q = new URLSearchParams(location.search);
+const w = +(q.get('w')||360), h = +(q.get('h')||660), s = +(q.get('s')||1);
+const to = q.get('to')||'', y = q.get('y');
+const stage = document.getElementById('stage');
+stage.style.transform = `scale(${s})`;
+stage.innerHTML = `<iframe src="index.html" width="${w}" height="${h}"></iframe>`;
+document.getElementById('cap').textContent = `${w}×${h} → ${to||('y='+y)} (${s})`;
+const fr = stage.querySelector('iframe');
+fr.addEventListener('load', () => {
+  setTimeout(() => {
+    try {
+      const cd = fr.contentDocument;
+      cd.documentElement.style.scrollBehavior = 'auto';
+      if (to) { const el = cd.querySelector(to); if (el) el.scrollIntoView({block:'start'}); }
+      else if (y === 'bottom') { fr.contentWindow.scrollTo(0, cd.body.scrollHeight); }
+      else if (y) { fr.contentWindow.scrollTo(0, +y); }
+    } catch(e){ document.getElementById('cap').textContent += ' ERR ' + e; }
+  }, 600);
+});
+</script>
+</body></html>
