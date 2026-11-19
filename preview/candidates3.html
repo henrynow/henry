@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko"><head><meta charset="utf-8">
+<style>
+  body{font-family:-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;background:#F2F4F6;margin:0;padding:28px}
+  h2{font-size:15px;margin:0 0 18px;color:#191F28}
+  .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+  .card{background:#fff;border-radius:16px;padding:18px 18px 14px}
+  .lab{font-size:11px;font-weight:700;color:#8B95A1;letter-spacing:.02em;margin-bottom:12px}
+  .row{display:flex;align-items:center;gap:10px;margin-bottom:14px}
+  .mk{border-radius:11px;background:linear-gradient(140deg,#2F80FF,#0066FF 60%,#0052D9);display:flex;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(0,102,255,.30);flex:0 0 auto}
+  .mk.lg{width:88px;height:88px;border-radius:26px}
+  .mk.md{width:34px;height:34px}
+  .mk.sm{width:24px;height:24px;border-radius:8px}
+  .mk.lg svg{width:52px;height:52px}
+  .mk.md svg{width:19px;height:19px}
+  .mk.sm svg{width:14px;height:14px}
+  .nm{font-size:20px;font-weight:800;letter-spacing:-.055em;color:#0B1220}
+  .small{display:flex;gap:14px;align-items:center;padding-top:10px;border-top:1px solid #EDEFF1}
+</style></head><body>
+<h2>OneFlow — round 3</h2>
+<div class="grid" id="grid"></div>
+<script>
+const S = (d,w=11) => `<path d="${d}" fill="none" stroke="#fff" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round"/>`;
+const marks = {
+ "K3 · confluence (one path)": S("M20 30c17 0 17 20 34 20h28")+S("M20 70c17 0 17-20 34-20"),
+ "K4 · confluence + arrowhead": S("M20 30c16 0 16 20 32 20h20")+S("M20 70c16 0 16-20 32-20")+S("M64 38l12 12-12 12",10),
+ "U · wave inside ring (open)": `<path d="M50 21a29 29 0 1 0 20.5 49.5" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>`+S("M28 56c7-9 14-9 21 0s14 9 21 0",8),
+ "V · long flowing ribbon": S("M18 46c14-19 28-19 42 0s22 19 22 0",11),
+ "W · wave + rising arrow": S("M20 64c10-13 20-13 30 0s20 13 30 0",10)+S("M74 46V22",10)+S("M64 32l10-10 10 10",10),
+ "X · double wave tight": S("M20 42c10-12 20-12 30 0s20 12 30 0",10)+S("M20 64c10-12 20-12 30 0s20 12 30 0",10),
+ "Y · river S": S("M30 22c26 0 26 28 0 28s-26 28 0 28",11),
+ "Z · stream gates": S("M24 30h52",10)+S("M24 50h52",10)+S("M24 70h52",10),
+ "AA · O with flow tail": `<path d="M50 20a30 30 0 1 1-21.2 51.2" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round"/>`+S("M30 56c8-8 16-8 24 0s16 8 24 0",9),
+ "AB · two arcs interlock": `<path d="M22 58a28 28 0 0 1 56 0" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>`+`<path d="M34 72a16 16 0 0 0 32 0" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round"/>`,
+ "AC · chevron wave": S("M22 62c12-26 24-26 36 0",10)+S("M46 62c12-26 24-26 36 0",10)
+};
+const grid = document.getElementById('grid');
+for (const [name, svg] of Object.entries(marks)) {
+  const card = document.createElement('div');
+  card.className = 'card';
+  card.innerHTML = `
+    <div class="lab">${name}</div>
+    <div class="row">
+      <div class="mk lg"><svg viewBox="0 0 100 100">${svg}</svg></div>
+      <div class="mk md"><svg viewBox="0 0 100 100">${svg}</svg></div>
+      <div><div class="nm">원플로우</div></div>
+    </div>
+    <div class="small">
+      <div class="mk sm"><svg viewBox="0 0 100 100">${svg}</svg></div>
+      <div class="mk md"><svg viewBox="0 0 100 100">${svg}</svg></div>
+      <span style="font-size:13px;color:#4E5968">ONEFLOW · 자동차 직수출</span>
+    </div>`;
+  grid.appendChild(card);
+}
+</script>
+</body></html>
